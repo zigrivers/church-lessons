@@ -36,6 +36,7 @@
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -81,7 +82,8 @@
       border-bottom: 1px solid var(--line);
       padding: 10px 12px;
     }
-    .toolbar-inner { width: min(100%, 920px); margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+    .toolbar-inner { width: min(100%, 920px); margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .toolbar-inner::-webkit-scrollbar { display: none; }
     button, .jump {
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -174,7 +176,9 @@
     summary::-webkit-details-marker { display: none; }
     summary::after { content: " +"; color: var(--accent); }
     details[open] summary::after { content: " –"; }
-    details > p, details > ul { padding: 0 14px 14px; margin-top: 0; }
+    details > p, details > ul, details > ol { padding: 0 14px 14px; margin-top: 0; }
+    details > ul { padding-left: 2.1rem; }
+    details > ol { padding-left: 2.6rem; }
     ul { padding-left: 1.25rem; }
     li { margin: .35rem 0; }
     .teacher-note { display: none; border-style: dashed; }
@@ -195,8 +199,8 @@
       background: color-mix(in srgb, var(--bg-soft) 55%, var(--card));
     }
     .dot { width: 30px; height: 30px; border-radius: 999px; background: var(--accent-2); color: white; display: grid; place-items: center; font-weight: 900; }
-    .progress-list { columns: 1; padding-left: 1.1rem; }
-    @media (min-width: 720px) { .progress-list { columns: 2; } }
+    .progress-list { columns: 1; }
+    @media (min-width: 720px) { .progress-list { columns: 2; column-gap: 2.6rem; } }
     .mini-tier { color: var(--muted); font-size: .8rem; }
     .hidden-card { display: none !important; }
     .bottom-bar {
@@ -1354,6 +1358,23 @@
       refreshProgress();
     }
     buttons.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+    // If an in-page link targets a card hidden by the current filter, show all cards first.
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        const target = document.getElementById(a.getAttribute('href').slice(1));
+        if (target && target.classList.contains('hidden-card')) applyFilter('all');
+      });
+    });
+    // Closed <details> content never prints; open them for print, then restore.
+    let detailsOpenState = [];
+    window.addEventListener('beforeprint', () => {
+      const all = Array.from(document.querySelectorAll('details'));
+      detailsOpenState = all.map(d => d.open);
+      all.forEach(d => { d.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details').forEach((d, i) => { d.open = detailsOpenState[i]; });
+    });
     document.querySelectorAll('.complete-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.complete;
