@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>When Plan A Breaks — Ruth and 1 Samuel Class Reader</title>
+  <style>
+    :root {
+      --bg: #fbf6ee;
+      --bg-soft: #f3eadb;
+      --card: #fffdf9;
+      --ink: #241c16;
+      --muted: #6b5e53;
+      --line: #e2d2c1;
+      --accent: #7b4f2f;
+      --accent-2: #314b49;
+      --accent-3: #8a6a17;
+      --success: #2f5c48;
+      --shadow: 0 12px 30px rgba(50, 32, 15, .12);
+      --radius: 20px;
+      color-scheme: light;
+    }
+    body.dark {
+      --bg: #15181a;
+      --bg-soft: #202528;
+      --card: #1d2225;
+      --ink: #f4efe8;
+      --muted: #c8bab0;
+      --line: #3a4145;
+      --accent: #d49b6c;
+      --accent-2: #9fd1c8;
+      --accent-3: #e2c268;
+      --success: #8fc7a8;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-soft), var(--bg) 42%);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.62;
+      padding-bottom: 96px;
+    }
+    a { color: var(--accent-2); font-weight: 700; }
+    .wrap { width: min(100%, 920px); margin: 0 auto; padding: 18px 16px 36px; }
+    .hero {
+      padding: 32px 20px 24px;
+      border-radius: 0 0 30px 30px;
+      background: linear-gradient(145deg, rgba(123,79,47,.14), rgba(49,75,73,.14));
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { width: min(100%, 920px); margin: 0 auto; }
+    h1, h2, h3, h4 { line-height: 1.15; margin: 0 0 .55rem; }
+    h1 { font-size: clamp(2.2rem, 10vw, 4.2rem); letter-spacing: -.05em; }
+    h2 { font-size: clamp(1.55rem, 6vw, 2.3rem); margin-top: 2.2rem; }
+    h3 { font-size: 1.45rem; }
+    h4 { font-size: .98rem; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+    p { margin: .3rem 0 .85rem; }
+    .subtitle { font-size: 1.18rem; color: var(--muted); max-width: 42rem; }
+    .theme {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+    .hero-note { margin-top: 18px; color: var(--muted); }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+    }
+    .toolbar-inner { width: min(100%, 920px); margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+    button, .jump {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink);
+      padding: 10px 13px;
+      font-weight: 800;
+      min-height: 44px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: .94rem;
+    }
+    button.active, .jump.active { background: var(--accent-2); color: white; border-color: var(--accent-2); }
+    .card, .reading-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin: 16px 0;
+      box-shadow: var(--shadow);
+    }
+    .reading-card { scroll-margin-top: 84px; }
+    .card-head { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent-2);
+      font-size: .84rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--bg-soft);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      font-size: .76rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .tier-core { background: color-mix(in srgb, var(--success) 18%, var(--card)); color: var(--success); }
+    .tier-recommended { background: color-mix(in srgb, var(--accent-3) 18%, var(--card)); color: var(--accent-3); }
+    .tier-extra { background: color-mix(in srgb, var(--accent-2) 16%, var(--card)); color: var(--accent-2); }
+    .small { font-size: .72rem; color: var(--muted); }
+    .read-block {
+      margin-top: 14px;
+      background: color-mix(in srgb, var(--bg-soft) 72%, var(--card));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .scripture-text p { margin: .52rem 0; }
+    .verse-num { font-weight: 900; color: var(--accent); font-size: .92em; }
+    .source-link { display: inline-block; margin-top: 8px; font-size: .92rem; }
+    section { margin-top: 14px; }
+    .bridge { border-left: 4px solid var(--accent-3); padding-left: 12px; }
+    .why { border-left: 4px solid var(--accent-2); padding-left: 12px; }
+    .discuss {
+      background: color-mix(in srgb, var(--accent-2) 12%, var(--card));
+      border: 1px solid var(--line);
+      padding: 13px;
+      border-radius: 16px;
+    }
+    .discuss p { font-size: 1.06rem; font-weight: 800; }
+    .planpath {
+      background: color-mix(in srgb, var(--accent) 10%, var(--card));
+      border: 1px solid var(--line);
+      padding: 13px;
+      border-radius: 16px;
+    }
+    details {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0;
+      background: color-mix(in srgb, var(--card) 80%, var(--bg-soft));
+      overflow: hidden;
+    }
+    summary {
+      list-style: none;
+      min-height: 48px;
+      padding: 13px 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: " +"; color: var(--accent); }
+    details[open] summary::after { content: " –"; }
+    details > p, details > ul { padding: 0 14px 14px; margin-top: 0; }
+    ul { padding-left: 1.25rem; }
+    li { margin: .35rem 0; }
+    .complete-btn { margin-top: 16px; width: 100%; border-radius: 14px; }
+    .complete-btn.done { background: var(--success); color: white; border-color: var(--success); }
+    .grid { display: grid; gap: 12px; }
+    @media (min-width: 760px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+    .timeline { display: grid; gap: 10px; }
+    .step {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--bg-soft) 55%, var(--card));
+    }
+    .dot { width: 30px; height: 30px; border-radius: 999px; background: var(--accent-2); color: white; display: grid; place-items: center; font-weight: 900; }
+    .progress-list { columns: 1; padding-left: 1.1rem; }
+    @media (min-width: 720px) { .progress-list { columns: 2; } }
+    .mini-tier { color: var(--muted); font-size: .8rem; }
+    .hidden-card { display: none !important; }
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      padding: 10px max(12px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));
+    }
+    .bottom-inner { width: min(100%, 920px); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .progress-text { font-weight: 900; font-size: .9rem; color: var(--muted); }
+    .top-link { text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 11px; background: var(--card); font-weight: 900; }
+    .note { color: var(--muted); font-size: .96rem; }
+    .sensitive { background: color-mix(in srgb, var(--accent-3) 10%, var(--card)); }
+    .sources a { overflow-wrap: anywhere; }
+    .print-note { display: none; }
+    @media print {
+      .toolbar, .bottom-bar, .complete-btn { display: none !important; }
+      body { background: white; padding: 0; }
+      .reading-card, .card { box-shadow: none; page-break-inside: avoid; }
+      details { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Curated class reader • Ruth 1–4 and 1 Samuel 1–7</p>
+      <h1>When Plan A Breaks</h1>
+      <p class="subtitle">Ruth, Hannah, Samuel, and trusting God when life changes.</p>
+      <p class="theme">Plan faithfully. Hold plans humbly. Follow Christ anyway.</p>
+      <p class="hero-note">Read each scripture block aloud, tap through the context, then discuss the question before moving on.</p>
+    </div>
+  </header>
+
+  <nav class="toolbar" aria-label="Class controls">
+    <div class="toolbar-inner">
+      <button class="filter-btn active" data-filter="all" type="button">All cards</button>
+      <button class="filter-btn" data-filter="35" type="button">35 min</button>
+      <button class="filter-btn" data-filter="45" type="button">45 min</button>
+      <button class="filter-btn" data-filter="ruth" type="button">Ruth</button>
+      <button class="filter-btn" data-filter="samuel" type="button">1 Samuel</button>
+      <button id="themeToggle" type="button">Dark mode</button>
+      <button id="resetProgress" type="button">Reset</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="card" id="start">
+      <h2>Start Here</h2>
+      <p><strong>How to use this page:</strong> choose a reader for the scripture verses, choose a second reader for the key information, pause for the discussion question, then move to the next card.</p>
+      <p>Nobody has to share personal details they do not want to share. The purpose is to understand the stories and notice what God teaches through changed plans, waiting, revelation, reverence, and redemption.</p>
+    </section>
+
+    <section class="card">
+      <h2>Opening reflection</h2>
+      <p>Think about your life 5, 10, 20, and 30 years from now. What are you hoping for? What parts can you mostly control? What parts require trust?</p>
+      <p>As we read, watch for what Ruth, Naomi, Boaz, Hannah, Samuel, Eli, and Israel could not control—and what they could still choose.</p>
+    </section>
+
+    <section class="card">
+      <h2>Story map</h2>
+      <div class="grid two">
+        <div>
+          <h3>Ruth</h3>
+          <div class="timeline">
+            <div class="step"><span class="dot">1</span><span>Famine, Moab, and family loss</span></div>
+            <div class="step"><span class="dot">2</span><span>Ruth’s covenant loyalty to Naomi and Naomi’s God</span></div>
+            <div class="step"><span class="dot">3</span><span>Gleaning, Boaz’s kindness, and quiet providence</span></div>
+            <div class="step"><span class="dot">4</span><span>Boaz acts with integrity as redeemer</span></div>
+            <div class="step"><span class="dot">5</span><span>Obed, David, and the line pointing to Christ</span></div>
+          </div>
+        </div>
+        <div>
+          <h3>1 Samuel 1–7</h3>
+          <div class="timeline">
+            <div class="step"><span class="dot">1</span><span>Hannah’s sorrow, prayer, and consecration</span></div>
+            <div class="step"><span class="dot">2</span><span>Samuel grows while Eli’s sons corrupt worship</span></div>
+            <div class="step"><span class="dot">3</span><span>Samuel learns to hear the Lord</span></div>
+            <div class="step"><span class="dot">4</span><span>Israel loses the ark by trusting a symbol without repentance</span></div>
+            <div class="step"><span class="dot">5</span><span>The ark returns; Israel repents; Ebenezer remembers help</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Choose your pacing</h2>
+      <p><strong>35-minute path:</strong> use the Core cards only. This gives the class the main story of Ruth, Hannah, Samuel, the ark, and Israel’s return to the Lord.</p>
+      <p><strong>45-minute path:</strong> use Core + Recommended cards. This adds more context and makes the story feel more complete.</p>
+      <p><strong>60-minute path:</strong> use all cards, or use the Extra depth cards when a discussion needs more substance.</p>
+      <details>
+        <summary>Progress checklist</summary>
+        <ol class="progress-list"><li><a href="#r1-loss">R1. Ruth 1:1–5</a> <span class="mini-tier">Core</span></li>
+<li><a href="#r2-orpah">R2. Ruth 1:8–9, 14</a> <span class="mini-tier">Extra depth</span></li>
+<li><a href="#r3-loyalty">R3. Ruth 1:16–18</a> <span class="mini-tier">Core</span></li>
+<li><a href="#r4-empty-harvest">R4. Ruth 1:20–22</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#r5-glean">R5. Ruth 2:1–3</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#r6-wings">R6. Ruth 2:8–12</a> <span class="mini-tier">Core</span></li>
+<li><a href="#r7-naomi-sees">R7. Ruth 2:17–20</a> <span class="mini-tier">Extra depth</span></li>
+<li><a href="#r8-covering">R8. Ruth 3:8–13</a> <span class="mini-tier">Core</span></li>
+<li><a href="#r9-redeemed">R9. Ruth 4:7–10, 13–17</a> <span class="mini-tier">Core</span></li>
+<li><a href="#r10-david-line">R10. Ruth 4:18–22</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#s1-hannah-pain">S1. 1 Samuel 1:3–8</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#s2-prayer-peace">S2. 1 Samuel 1:9–18</a> <span class="mini-tier">Core</span></li>
+<li><a href="#s3-lent">S3. 1 Samuel 1:24–28</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#s4-hannah-song">S4. 1 Samuel 2:1–2, 6–8</a> <span class="mini-tier">Extra depth</span></li>
+<li><a href="#s5-eli-sons">S5. 1 Samuel 2:12, 17, 22–26</a> <span class="mini-tier">Recommended</span></li>
+<li><a href="#s6-speak">S6. 1 Samuel 3:1–10</a> <span class="mini-tier">Core</span></li>
+<li><a href="#s7-prophet">S7. 1 Samuel 3:15–20</a> <span class="mini-tier">Extra depth</span></li>
+<li><a href="#s8-ark-charm">S8. 1 Samuel 4:3–11</a> <span class="mini-tier">Core</span></li>
+<li><a href="#s9-dagon-return">S9. 1 Samuel 5:1–4; 6:10–16</a> <span class="mini-tier">Extra depth</span></li>
+<li><a href="#s10-ebenezer">S10. 1 Samuel 7:3–4, 8–12</a> <span class="mini-tier">Core</span></li></ol>
+      </details>
+    </section>
+
+    <h2 id="ruth-section">Ruth: Faith, Loyalty, and Redemption When the Future Falls Apart</h2>
+    <p class="note">Ruth 1 shows loss and changed plans. Ruth 2 shows faithful action and quiet providence. Ruth 3 shows covenant trust and integrity. Ruth 4 shows redemption and a future bigger than Ruth could see.</p>
+
+    
+<article class="reading-card" id="r1-loss" data-card="r1-loss" data-tier="Core" data-35="true" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R1 • Ruth 1:1–5</p>
+      <h3>Plan A breaks: famine, Moab, and loss</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">1</span> Now it came to pass in the days when the judges ruled, that there was a famine in the land. And a certain man of Beth-lehem-judah went to sojourn in the country of Moab, he, and his wife, and his two sons.</p>
+<p><span class="verse-num">2</span> And the name of the man was Elimelech, and the name of his wife Naomi, and the name of his two sons Mahlon and Chilion, Ephrathites of Beth-lehem-judah. And they came into the country of Moab, and continued there.</p>
+<p><span class="verse-num">3</span> And Elimelech Naomi’s husband died; and she was left, and her two sons.</p>
+<p><span class="verse-num">4</span> And they took them wives of the women of Moab; the name of the one was Orpah, and the name of the other Ruth: and they dwelled there about ten years.</p>
+<p><span class="verse-num">5</span> And Mahlon and Chilion died also both of them; and the woman was left of her two sons and her husband.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Ruth opens during the time of the judges. Naomi’s family leaves Bethlehem because of famine, lives in Moab for about ten years, and then Naomi loses her husband and both sons.</p></section>
+  <section><h4>What is happening?</h4><p>Naomi, Ruth, and Orpah are not starting a sweet romance story. They are starting from hunger, displacement, death, and uncertainty.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>The phrase “days when the judges ruled” places the story in an unstable period marked by disorder, idolatry, and foreign oppression.</li><li>Bethlehem means “house of bread,” so a famine there is an ironic and painful opening.</li><li>Moab was east of the Dead Sea. Moabites were related to Israelites, but the relationship between the peoples was complicated and often hostile.</li><li>For widows in this world, losing husbands and sons was not only emotional devastation; it could threaten survival, inheritance, protection, and social standing.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Modern readers may hear “they moved to Moab” like a simple relocation. It was more like leaving covenant land for enemy-neighbor territory because survival was at stake.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Naomi’s name means “pleasant,” but by verse 5 her life feels anything but pleasant. The story begins with a name and a reality that no longer match.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Ruth’s later loyalty matters more when you understand she is choosing faith in a situation with no obvious safe option.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What part of Naomi and Ruth’s situation was outside their control? What choices were still available to them?</p></section>
+  <section><h4>Connect it to your life</h4><p>Teenagers may not face famine in Bethlehem, but they do know what it feels like when family, school, health, friendships, or future plans suddenly change.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What might Ruth’s 5-year plan have looked like before her husband died? What parts of that plan were now underlined as outside her control?</p></section>
+  <button class="complete-btn" type="button" data-complete="r1-loss">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r2-orpah" data-card="r2-orpah" data-tier="Extra depth" data-35="false" data-45="false" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R2 • Ruth 1:8–9, 14</p>
+      <h3>Naomi releases them; Orpah leaves in grief</h3>
+    </div>
+    <div class="badges"><span class="badge tier-extra">Extra depth</span><span class="badge small">60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">8</span> And Naomi said unto her two daughters in law, Go, return each to her mother’s house: the Lord deal kindly with you, as ye have dealt with the dead, and with me.</p>
+<p><span class="verse-num">9</span> The Lord grant you that ye may find rest, each of you in the house of her husband. Then she kissed them; and they lifted up their voice, and wept.</p>
+<p><span class="verse-num">14</span> And they lifted up their voice, and wept again: and Orpah kissed her mother in law; but Ruth clave unto her.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Naomi hears the famine has ended in Judah and begins returning home. Ruth and Orpah initially go with her, but Naomi urges them to go back to Moab and rebuild their lives.</p></section>
+  <section><h4>What is happening?</h4><p>Naomi is not trying to be cruel. She believes she has no realistic future to offer them.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Naomi asks the Lord to deal kindly with Ruth and Orpah. She recognizes their love and sacrifice.</li><li>Orpah should not be treated as a villain. She weeps, loves Naomi, and makes a painful but reasonable choice.</li><li>Ruth’s choice becomes extraordinary not because Orpah is bad, but because Ruth chooses costly loyalty when she has every reason to leave.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Modern readers often flatten the story into “Ruth good, Orpah bad.” The text is more compassionate than that.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The word “clave” means held fast. Ruth does not drift with Naomi; she grips the relationship and refuses to abandon her.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This helps teens avoid judging people too quickly when they face hard choices we do not fully understand.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>How can we honor Ruth’s courage without shaming Orpah?</p></section>
+  <section><h4>Connect it to your life</h4><p>Sometimes two sincere people make different decisions under pressure. Mature discipleship avoids easy labels.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>When someone else’s decision changes your life, what can you still choose?</p></section>
+  <button class="complete-btn" type="button" data-complete="r2-orpah">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r3-loyalty" data-card="r3-loyalty" data-tier="Core" data-35="true" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R3 • Ruth 1:16–18</p>
+      <h3>“Thy people shall be my people”</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">16</span> And Ruth said, Entreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:</p>
+<p><span class="verse-num">17</span> Where thou diest, will I die, and there will I be buried: the Lord do so to me, and more also, if ought but death part thee and me.</p>
+<p><span class="verse-num">18</span> When she saw that she was stedfastly minded to go with her, then she left speaking unto her.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Naomi tells Ruth to follow Orpah back to Moab. Ruth answers with one of the strongest statements of loyalty in scripture.</p></section>
+  <section><h4>What is happening?</h4><p>Ruth chooses Naomi, Naomi’s people, and Naomi’s God without knowing what will happen next.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Ruth’s statement is more than family affection. It sounds like covenant commitment: people, place, God, death, and future all become tied to Naomi’s covenant world.</li><li>Ruth is a Moabite choosing Israel’s God. That is a major spiritual and social step.</li><li>She does not know Boaz, Obed, David, or the future ending. She only knows the next faithful choice.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>This is often quoted at weddings, but in context it is spoken by a widowed foreign daughter-in-law to a grieving mother-in-law on a dangerous road.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Ruth names the Lord in her oath. She is not only attached to Naomi emotionally; she is binding herself spiritually.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Faith is often choosing God before the ending is visible, not after everything is safe.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What would it mean for a teenager today to say, “Thy God shall be my God”?</p></section>
+  <section><h4>Connect it to your life</h4><p>This could mean choosing faith when friends drift, choosing covenants when it costs popularity, or staying loyal to someone who is grieving.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>Ruth cannot control her past losses or future security. She can still circle loyalty, courage, and God.</p></section>
+  <button class="complete-btn" type="button" data-complete="r3-loyalty">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r4-empty-harvest" data-card="r4-empty-harvest" data-tier="Recommended" data-35="false" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R4 • Ruth 1:20–22</p>
+      <h3>Naomi feels empty, but harvest is beginning</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">20</span> And she said unto them, Call me not Naomi, call me Mara: for the Almighty hath dealt very bitterly with me.</p>
+<p><span class="verse-num">21</span> I went out full, and the Lord hath brought me home again empty: why then call ye me Naomi, seeing the Lord hath testified against me, and the Almighty hath afflicted me?</p>
+<p><span class="verse-num">22</span> So Naomi returned, and Ruth the Moabitess, her daughter in law, with her, which returned out of the country of Moab: and they came to Beth-lehem in the beginning of barley harvest.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Ruth and Naomi arrive in Bethlehem. The city notices them, and Naomi gives voice to how bitter and empty she feels.</p></section>
+  <section><h4>What is happening?</h4><p>Naomi is honest about pain, while the narrator quietly points to coming provision: barley harvest has begun.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Naomi means pleasant. Mara means bitter. Naomi’s new name expresses grief, not rebellion that we should criticize too quickly.</li><li>Barley harvest means there is food in the fields. Naomi cannot see the whole future yet, but the story hints that mercy is already starting.</li><li>Ruth, the Moabite outsider, is still with her. Naomi says she is empty, but the reader can see she is not entirely alone.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Teenagers may skip the harvest detail as background scenery. It is actually a quiet signal that the story is turning.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Hope enters the story before Naomi feels hopeful. That happens in real life too.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>God may be working before we can emotionally recognize it.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why does it matter that the story gives a hint of hope before Naomi feels hopeful?</p></section>
+  <section><h4>Connect it to your life</h4><p>You can be faithful and still not feel okay yet. Feeling hope can lag behind the first signs of help.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>When your plan breaks, what signs of help might be easy to miss because you still feel empty?</p></section>
+  <button class="complete-btn" type="button" data-complete="r4-empty-harvest">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r5-glean" data-card="r5-glean" data-tier="Recommended" data-35="false" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R5 • Ruth 2:1–3</p>
+      <h3>Ruth takes the next faithful step</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">1</span> And Naomi had a kinsman of her husband’s, a mighty man of wealth, of the family of Elimelech; and his name was Boaz.</p>
+<p><span class="verse-num">2</span> And Ruth the Moabitess said unto Naomi, Let me now go to the field, and glean ears of corn after him in whose sight I shall find grace. And she said unto her, Go, my daughter.</p>
+<p><span class="verse-num">3</span> And she went, and came, and gleaned in the field after the reapers: and her hap was to light on a part of the field belonging unto Boaz, who was of the kindred of Elimelech.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/2?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>After arriving at barley harvest, Ruth asks to glean in the fields so she and Naomi can eat.</p></section>
+  <section><h4>What is happening?</h4><p>Ruth acts. She does not know the ending, but she knows the next humble thing she can do.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Gleaning was part of Israel’s law of mercy: portions of the harvest were left for the poor, strangers, fatherless, and widows.</li><li>Ruth is both a widow and a foreigner, so gleaning fits her vulnerable situation.</li><li>The phrase “her hap” means it looked like chance that she came to Boaz’s field, but the story invites us to watch for quiet providence.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Trusting God is not the same as doing nothing. Ruth trusts God while also working hard.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Boaz is introduced before Ruth meets him. The reader knows there is a possible redeemer nearby before Ruth does.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Sometimes God’s guidance is not dramatic. It may look like one faithful step, one field, one conversation.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What is the difference between trusting God and doing nothing?</p></section>
+  <section><h4>Connect it to your life</h4><p>For teens, the next faithful step might be apologizing, studying, applying, praying, asking for help, showing up, or serving quietly.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>Ruth cannot control the whole future. She can still circle effort, humility, and courage today.</p></section>
+  <button class="complete-btn" type="button" data-complete="r5-glean">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r6-wings" data-card="r6-wings" data-tier="Core" data-35="true" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R6 • Ruth 2:8–12</p>
+      <h3>Boaz protects Ruth: “under whose wings”</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">8</span> Then said Boaz unto Ruth, Hearest thou not, my daughter? Go not to glean in another field, neither go from hence, but abide here fast by my maidens:</p>
+<p><span class="verse-num">9</span> Let thine eyes be on the field that they do reap, and go thou after them: have I not charged the young men that they shall not touch thee? and when thou art athirst, go unto the vessels, and drink of that which the young men have drawn.</p>
+<p><span class="verse-num">10</span> Then she fell on her face, and bowed herself to the ground, and said unto him, Why have I found grace in thine eyes, that thou shouldest take knowledge of me, seeing I am a stranger?</p>
+<p><span class="verse-num">11</span> And Boaz answered and said unto her, It hath fully been shewed me, all that thou hast done unto thy mother in law since the death of thine husband: and how thou hast left thy father and thy mother, and the land of thy nativity, and art come unto a people which thou knewest not heretofore.</p>
+<p><span class="verse-num">12</span> The Lord recompense thy work, and a full reward be given thee of the Lord God of Israel, under whose wings thou art come to trust.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/2?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Boaz notices Ruth, learns who she is, and gives instructions that protect her dignity and safety in the field.</p></section>
+  <section><h4>What is happening?</h4><p>Boaz uses his position to protect rather than exploit. Ruth receives grace as a stranger.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Boaz calls Ruth “my daughter,” speaks respectfully, and makes sure she has safe access to food and water.</li><li>Ruth asks why he would notice her because she is a stranger. She knows she does not have automatic social standing in Bethlehem.</li><li>The image of coming under the Lord’s wings means refuge, protection, and covenant belonging.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Boaz’s kindness is not just romantic. It is righteous power used to make a vulnerable person safer.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Boaz has heard about Ruth’s loyalty before he ever speaks to her. Quiet faithfulness travels farther than Ruth may have realized.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This card teaches both sides: Ruth’s faith in action and Boaz’s Christlike way of helping.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>How can you help someone in a way that protects their dignity instead of making them feel like a project?</p></section>
+  <section><h4>Connect it to your life</h4><p>A Boaz-like teen might use social influence to include, protect, speak kindly, or quietly make someone’s life safer.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>How does Boaz become part of someone else’s changed plan in a righteous way?</p></section>
+  <button class="complete-btn" type="button" data-complete="r6-wings">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r7-naomi-sees" data-card="r7-naomi-sees" data-tier="Extra depth" data-35="false" data-45="false" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R7 • Ruth 2:17–20</p>
+      <h3>Naomi starts to see kindness again</h3>
+    </div>
+    <div class="badges"><span class="badge tier-extra">Extra depth</span><span class="badge small">60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">17</span> So she gleaned in the field until even, and beat out that she had gleaned: and it was about an ephah of barley.</p>
+<p><span class="verse-num">18</span> And she took it up, and went into the city: and her mother in law saw what she had gleaned: and she brought forth, and gave to her that she had reserved after she was sufficed.</p>
+<p><span class="verse-num">19</span> And her mother in law said unto her, Where hast thou gleaned to day? and where wroughtest thou? blessed be he that did take knowledge of thee. And she shewed her mother in law with whom she had wrought, and said, The man’s name with whom I wrought to day is Boaz.</p>
+<p><span class="verse-num">20</span> And Naomi said unto her daughter in law, Blessed be he of the Lord, who hath not left off his kindness to the living and to the dead. And Naomi said unto her, The man is near of kin unto us, one of our next kinsmen.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/2?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Boaz quietly gives Ruth extra grain. Ruth brings food home, and Naomi recognizes both material help and a possible path toward redemption.</p></section>
+  <section><h4>What is happening?</h4><p>Naomi begins to see that the Lord has not abandoned the living or the dead.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>An ephah of barley was a large amount for one day of gleaning. Ruth comes home with evidence of unusual generosity.</li><li>A “next kinsman” or redeemer had the right or responsibility to protect family land, inheritance, and name.</li><li>Naomi’s language shifts from bitterness to blessing. Her circumstances are not fully solved, but her eyes are opening.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Naomi’s faith does not snap back instantly. It begins with noticing one act of kindness.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The phrase “to the living and to the dead” shows that redemption in Ruth involves more than Ruth’s personal future. It touches family memory, inheritance, and loss.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Sometimes hope returns through specific evidence, not vague optimism.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What changed in Naomi between chapter 1 and chapter 2?</p></section>
+  <section><h4>Connect it to your life</h4><p>When someone is grieving, one concrete act of help can matter more than a dozen cheerful slogans.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What evidence of God’s kindness might you need to learn to notice, even while your plan is still unresolved?</p></section>
+  <button class="complete-btn" type="button" data-complete="r7-naomi-sees">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r8-covering" data-card="r8-covering" data-tier="Core" data-35="true" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R8 • Ruth 3:8–13</p>
+      <h3>Ruth asks Boaz to act as redeemer</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">8</span> And it came to pass at midnight, that the man was afraid, and turned himself: and, behold, a woman lay at his feet.</p>
+<p><span class="verse-num">9</span> And he said, Who art thou? And she answered, I am Ruth thine handmaid: spread therefore thy skirt over thine handmaid; for thou art a near kinsman.</p>
+<p><span class="verse-num">10</span> And he said, Blessed be thou of the Lord, my daughter: for thou hast shewed more kindness in the latter end than at the beginning, inasmuch as thou followedst not young men, whether poor or rich.</p>
+<p><span class="verse-num">11</span> And now, my daughter, fear not; I will do to thee all that thou requirest: for all the city of my people doth know that thou art a virtuous woman.</p>
+<p><span class="verse-num">12</span> And now it is true that I am thy near kinsman: howbeit there is a kinsman nearer than I.</p>
+<p><span class="verse-num">13</span> Tarry this night, and it shall be in the morning, that if he will perform unto thee the part of a kinsman, well; let him do the kinsman’s part: but if he will not do the part of a kinsman to thee, then will I do the part of a kinsman to thee, as the Lord liveth: lie down until the morning.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/3?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Naomi makes a plan for Ruth to appeal to Boaz at the threshing floor. Ruth follows the counsel and makes a direct request.</p></section>
+  <section><h4>What is happening?</h4><p>Ruth asks Boaz to spread his covering over her because he is a near kinsman. Boaz responds with honor, not exploitation.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>This ancient scene is easy to misunderstand if we read it through modern dating assumptions.</li><li>The request to spread his skirt, cloak, or wing over her is a bold appeal for covenant protection and redemption.</li><li>The language connects back to Ruth 2:12: Ruth came under the Lord’s wings; now Boaz can become an earthly agent of that protection.</li><li>Boaz could have taken advantage of Ruth’s vulnerability. Instead, he protects her reputation and follows the lawful order.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>The point is not scandal or romance first. The point is covenant appeal, vulnerability, courage, and integrity.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Boaz says Ruth is known as a virtuous woman. Her character has become public even though she entered Bethlehem as an outsider.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Integrity matters most when another person is vulnerable and no crowd is watching.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why is integrity especially important when someone else is vulnerable?</p></section>
+  <section><h4>Connect it to your life</h4><p>For teens, this might mean protecting someone’s reputation, respecting boundaries, refusing to use private information, or doing the right thing when it would be easy not to.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>Ruth acts courageously, but then she has to wait on someone else’s agency and timing. Where does your future require that kind of trust?</p></section>
+  <button class="complete-btn" type="button" data-complete="r8-covering">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r9-redeemed" data-card="r9-redeemed" data-tier="Core" data-35="true" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R9 • Ruth 4:7–10, 13–17</p>
+      <h3>Boaz redeems; Naomi is restored</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">7</span> Now this was the manner in former time in Israel concerning redeeming and concerning changing, for to confirm all things; a man plucked off his shoe, and gave it to his neighbour: and this was a testimony in Israel.</p>
+<p><span class="verse-num">9</span> And Boaz said unto the elders, and unto all the people, Ye are witnesses this day, that I have bought all that was Elimelech’s, and all that was Chilion’s and Mahlon’s, of the hand of Naomi.</p>
+<p><span class="verse-num">10</span> Moreover Ruth the Moabitess, the wife of Mahlon, have I purchased to be my wife, to raise up the name of the dead upon his inheritance, that the name of the dead be not cut off from among his brethren, and from the gate of his place: ye are witnesses this day.</p>
+<p><span class="verse-num">13</span> So Boaz took Ruth, and she was his wife: and when he went in unto her, the Lord gave her conception, and she bare a son.</p>
+<p><span class="verse-num">14</span> And the women said unto Naomi, Blessed be the Lord, which hath not left thee this day without a kinsman, that his name may be famous in Israel.</p>
+<p><span class="verse-num">15</span> And he shall be unto thee a restorer of thy life, and a nourisher of thine old age: for thy daughter in law, which loveth thee, which is better to thee than seven sons, hath born him.</p>
+<p><span class="verse-num">17</span> And the women her neighbours gave it a name, saying, There is a son born to Naomi; and they called his name Obed: he is the father of Jesse, the father of David.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/4?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Boaz goes to the city gate, handles the matter publicly, and redeems the family line after the nearer kinsman declines.</p></section>
+  <section><h4>What is happening?</h4><p>Redemption brings land, family, name, protection, and future back into Naomi and Ruth’s story.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>The city gate functioned like a public legal and community space.</li><li>The sandal custom confirmed a transaction in that culture.</li><li>To redeem means to buy back, rescue, restore, or reclaim what might otherwise be lost.</li><li>The women say Ruth is better to Naomi than seven sons—a massive statement in a world where sons were tied to family security and inheritance.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Redemption does not erase the graves in chapter 1. Naomi’s husband and sons are still gone. But God brings life and future into real loss.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Obed is called a son born to Naomi, even though Ruth gives birth. The community sees Naomi’s emptiness being answered through Ruth’s covenant loyalty.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This helps youth see redemption as restoration through real pain, not pretending pain never happened.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What has God restored in Ruth 4? What has He not simply erased?</p></section>
+  <section><h4>Connect it to your life</h4><p>Christlike redemption often looks like protecting, restoring, including, and giving someone a future when they cannot create one alone.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>How does Ruth 4 show that God can make more of faithful choices than people can see at the time?</p></section>
+  <button class="complete-btn" type="button" data-complete="r9-redeemed">Mark complete</button>
+</article>
+
+<article class="reading-card" id="r10-david-line" data-card="r10-david-line" data-tier="Recommended" data-35="false" data-45="true" data-section="ruth">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">R10 • Ruth 4:18–22</p>
+      <h3>The story points beyond what Ruth could see</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">18</span> Now these are the generations of Pharez: Pharez begat Hezron,</p>
+<p><span class="verse-num">19</span> And Hezron begat Ram, and Ram begat Amminadab,</p>
+<p><span class="verse-num">20</span> And Amminadab begat Nahshon, and Nahshon begat Salmon,</p>
+<p><span class="verse-num">21</span> And Salmon begat Boaz, and Boaz begat Obed,</p>
+<p><span class="verse-num">22</span> And Obed begat Jesse, and Jesse begat David.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/4?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>The book ends with a genealogy. That may look boring, but it reveals the larger meaning of Ruth’s ordinary faithfulness.</p></section>
+  <section><h4>What is happening?</h4><p>Ruth, the Moabite outsider, becomes part of the family line that leads to King David and, through David’s line, points forward to Jesus Christ.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Ancient genealogies were not filler. They told readers where a person or family fit in God’s larger story.</li><li>Ruth could not have known in chapter 1 that her loyalty would connect to David’s family line.</li><li>The New Testament genealogy of Jesus includes Ruth, showing her place in the story leading to Christ.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>A list of names can be the spiritual payoff. God was doing more than Ruth could see.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The book starts with death and ends with birth and lineage.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Your faithful choices may matter beyond the timeline you can imagine.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why might God’s biggest work in our lives be bigger than what we can see right now?</p></section>
+  <section><h4>Connect it to your life</h4><p>A teen’s quiet choices—faith, loyalty, repentance, service—can bless future people they have not met yet.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>Ruth did not know the ending when she chose faith. What would change if you did not require the ending before making the next faithful choice?</p></section>
+  <button class="complete-btn" type="button" data-complete="r10-david-line">Mark complete</button>
+</article>
+
+
+
+    <h2 id="samuel-section">1 Samuel 1–7: Prayer, Revelation, Reverence, and Returning to the Lord</h2>
+    <p class="note">Hannah’s private prayer leads into Samuel’s public prophetic role. Samuel’s growth contrasts with Eli’s sons, and Israel learns that sacred objects cannot replace repentance and trust in the Lord.</p>
+
+    <article class="reading-card" id="s1-hannah-pain" data-card="s1-hannah-pain" data-tier="Recommended" data-35="false" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S1 • 1 Samuel 1:3–8</p>
+      <h3>Hannah’s repeated pain at worship</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">3</span> And this man went up out of his city yearly to worship and to sacrifice unto the Lord of hosts in Shiloh. And the two sons of Eli, Hophni and Phinehas, the priests of the Lord, were there.</p>
+<p><span class="verse-num">5</span> But unto Hannah he gave a worthy portion; for he loved Hannah: but the Lord had shut up her womb.</p>
+<p><span class="verse-num">6</span> And her adversary also provoked her sore, for to make her fret, because the Lord had shut up her womb.</p>
+<p><span class="verse-num">7</span> And as he did so year by year, when she went up to the house of the Lord, so she provoked her; therefore she wept, and did not eat.</p>
+<p><span class="verse-num">8</span> Then said Elkanah her husband to her, Hannah, why weepest thou? and why eatest thou not? and why is thy heart grieved? am not I better to thee than ten sons?</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Elkanah has two wives, Hannah and Peninnah. Peninnah has children; Hannah has none. Their family goes yearly to worship at Shiloh.</p></section>
+  <section><h4>What is happening?</h4><p>Hannah’s pain is repeated, public, and misunderstood, even by someone who loves her.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Shiloh was an important worship center before the temple in Jerusalem.</li><li>In Hannah’s society, infertility carried deep social and emotional weight. This is about longing, comparison, shame, identity, and powerlessness—not only wanting a baby.</li><li>Elkanah loves Hannah, but his question shows that love does not always mean full understanding.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Hannah’s sorrow is happening at a religious place and during a religious routine. Faithful people can hurt deeply at church.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The phrase “year by year” means this was not one bad day. It was repeated disappointment.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This helps youth connect Hannah to any righteous longing that is painful and slow: family peace, answers, healing, belonging, testimony, or being understood.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why is it hard when people who love us still do not fully understand what hurts?</p></section>
+  <section><h4>Connect it to your life</h4><p>A teen may feel overlooked, behind, compared, or misunderstood even while doing the right things.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What part of Hannah’s life plan was outside her control? What could she still choose?</p></section>
+  <button class="complete-btn" type="button" data-complete="s1-hannah-pain">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s2-prayer-peace" data-card="s2-prayer-peace" data-tier="Core" data-35="true" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S2 • 1 Samuel 1:9–18</p>
+      <h3>Hannah pours out her soul and leaves with peace</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">10</span> And she was in bitterness of soul, and prayed unto the Lord, and wept sore.</p>
+<p><span class="verse-num">11</span> And she vowed a vow, and said, O Lord of hosts, if thou wilt indeed look on the affliction of thine handmaid, and remember me, and not forget thine handmaid, but wilt give unto thine handmaid a man child, then I will give him unto the Lord all the days of his life, and there shall no razor come upon his head.</p>
+<p><span class="verse-num">13</span> Now Hannah, she spake in her heart; only her lips moved, but her voice was not heard: therefore Eli thought she had been drunken.</p>
+<p><span class="verse-num">15</span> And Hannah answered and said, No, my lord, I am a woman of a sorrowful spirit: I have drunk neither wine nor strong drink, but have poured out my soul before the Lord.</p>
+<p><span class="verse-num">17</span> Then Eli answered and said, Go in peace: and the God of Israel grant thee thy petition that thou hast asked of him.</p>
+<p><span class="verse-num">18</span> And she said, Let thine handmaid find grace in thy sight. So the woman went her way, and did eat, and her countenance was no more sad.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Hannah goes to the temple area in Shiloh and prays with unusual intensity. Eli sees her mouth moving and misunderstands her.</p></section>
+  <section><h4>What is happening?</h4><p>Hannah does not fake spirituality. She brings sorrow directly to God, receives a priestly blessing, and leaves changed before her circumstances change.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>A vow was a serious act of devotion, not a casual promise. Hannah offers her deepest desired blessing back to the Lord.</li><li>“No razor” points to special consecration, similar to Nazarite devotion.</li><li>Eli misunderstands Hannah’s silent prayer, which means one of the most faithful moments of her life is misread by someone else.</li><li>Samuel has not been born in verse 18. Peninnah has not changed. Hannah’s countenance changes before the answer arrives.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Prayer does not always change the situation first. Sometimes it changes the person’s strength, peace, and ability to keep walking.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Hannah says she poured out her soul. She does not bring God a polished version of herself.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This gives teens permission to pray honestly when they are not okay.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What can prayer change before it changes our circumstances?</p></section>
+  <section><h4>Connect it to your life</h4><p>Honest prayer can include complaint, grief, confusion, longing, and trust. It does not have to sound like a talk in sacrament meeting.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What part of your future do you need to bring honestly to God instead of performing confidence?</p></section>
+  <button class="complete-btn" type="button" data-complete="s2-prayer-peace">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s3-lent" data-card="s3-lent" data-tier="Recommended" data-35="false" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S3 • 1 Samuel 1:24–28</p>
+      <h3>Hannah gives Samuel to the Lord</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">24</span> And when she had weaned him, she took him up with her, with three bullocks, and one ephah of flour, and a bottle of wine, and brought him unto the house of the Lord in Shiloh: and the child was young.</p>
+<p><span class="verse-num">26</span> And she said, Oh my lord, as thy soul liveth, my lord, I am the woman that stood by thee here, praying unto the Lord.</p>
+<p><span class="verse-num">27</span> For this child I prayed; and the Lord hath given me my petition which I asked of him:</p>
+<p><span class="verse-num">28</span> Therefore also I have lent him to the Lord; as long as he liveth he shall be lent to the Lord. And he worshipped the Lord there.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/1?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>The Lord remembers Hannah, Samuel is born, and after he is weaned Hannah brings him to Shiloh as she promised.</p></section>
+  <section><h4>What is happening?</h4><p>Hannah keeps her vow. The long-awaited blessing is consecrated back to God.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>“Lent him to the Lord” does not mean God borrows Samuel temporarily. It means Samuel is dedicated to the Lord’s service.</li><li>This is deeply sacrificial. Hannah gives God not only her pain, but also her blessing.</li><li>Samuel’s life as a prophet begins with Hannah’s consecration. Her private prayer becomes part of Israel’s public future.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>We often ask God to remove pain. Hannah also teaches what it means to give the blessing back to God once it comes.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Hannah returns to the same place where she was misunderstood. The location of her sorrow becomes the location of her consecration.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>Consecration means God gets access to our successes, not just our problems.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What does it mean to give God not just our problems, but also our blessings?</p></section>
+  <section><h4>Connect it to your life</h4><p>A teen can consecrate talents, opportunities, friendships, education, work, and future plans to bless others, not just to build status.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What blessing in your future would you want to use for God instead of only for yourself?</p></section>
+  <button class="complete-btn" type="button" data-complete="s3-lent">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s4-hannah-song" data-card="s4-hannah-song" data-tier="Extra depth" data-35="false" data-45="false" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S4 • 1 Samuel 2:1–2, 6–8</p>
+      <h3>Hannah rejoices in the God who reverses expectations</h3>
+    </div>
+    <div class="badges"><span class="badge tier-extra">Extra depth</span><span class="badge small">60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">1</span> And Hannah prayed, and said, My heart rejoiceth in the Lord, mine horn is exalted in the Lord: my mouth is enlarged over mine enemies; because I rejoice in thy salvation.</p>
+<p><span class="verse-num">2</span> There is none holy as the Lord: for there is none beside thee: neither is there any rock like our God.</p>
+<p><span class="verse-num">6</span> The Lord killeth, and maketh alive: he bringeth down to the grave, and bringeth up.</p>
+<p><span class="verse-num">7</span> The Lord maketh poor, and maketh rich: he bringeth low, and lifteth up.</p>
+<p><span class="verse-num">8</span> He raiseth up the poor out of the dust, and lifteth up the beggar from the dunghill, to set them among princes, and to make them inherit the throne of glory: for the pillars of the earth are the Lord’s, and he hath set the world upon them.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/2?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>After dedicating Samuel, Hannah prays a song of praise. She does not only rejoice in receiving a child; she rejoices in the Lord Himself.</p></section>
+  <section><h4>What is happening?</h4><p>Hannah testifies that God can lift the lowly and reverse human expectations.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>“Horn” is a symbol of strength or power. Hannah is saying her strength is exalted in the Lord.</li><li>Her song is not small. It moves from personal pain to a sweeping testimony of God’s power, justice, and salvation.</li><li>This song sets up themes that continue in 1 Samuel: God raises unexpected people and humbles pride.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Hannah’s joy is not shallow. It is worship after years of sorrow and after a real sacrifice.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Her first line is the title of the Come, Follow Me lesson: “My heart rejoiceth in the Lord.”</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>The deepest joy is not just getting what we wanted; it is knowing the Lord is real, holy, and steady.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>How is rejoicing in the Lord different from only rejoicing in a good outcome?</p></section>
+  <section><h4>Connect it to your life</h4><p>Sometimes gratitude grows deeper when it has passed through waiting.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What would it look like to build your future around the Lord as your rock, not just around getting your preferred outcome?</p></section>
+  <button class="complete-btn" type="button" data-complete="s4-hannah-song">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s5-eli-sons" data-card="s5-eli-sons" data-tier="Recommended" data-35="false" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S5 • 1 Samuel 2:12, 17, 22–26</p>
+      <h3>Sacred things without reverence</h3>
+    </div>
+    <div class="badges"><span class="badge tier-recommended">Recommended</span><span class="badge small">45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">12</span> Now the sons of Eli were sons of Belial; they knew not the Lord.</p>
+<p><span class="verse-num">17</span> Wherefore the sin of the young men was very great before the Lord: for men abhorred the offering of the Lord.</p>
+<p><span class="verse-num">24</span> Nay, my sons; for it is no good report that I hear: ye make the Lord’s people to transgress.</p>
+<p><span class="verse-num">26</span> And the child Samuel grew on, and was in favour both with the Lord, and also with men.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/2?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>While Samuel grows at Shiloh, Eli’s sons Hophni and Phinehas corrupt their priestly responsibilities and treat worship casually.</p></section>
+  <section><h4>What is happening?</h4><p>Samuel’s quiet growth is placed beside the wickedness of people who hold sacred roles but do not know the Lord.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>The sons of Eli are priests, but the text says they “knew not the Lord.” A sacred position is not the same as real discipleship.</li><li>Their behavior makes people hate or despise the offering of the Lord. Bad spiritual leadership can damage people’s desire to worship.</li><li>Samuel grows in favor with the Lord and with people, creating a sharp contrast with Eli’s sons.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>The danger is not only “bad people out there.” It is treating sacred things as ordinary while still using religious language or position.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Samuel is young, but spiritually growing. Eli’s sons are older and official, but spiritually decaying.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This prepares students for 1 Samuel 4: Israel will later treat the ark as a sacred object without real obedience.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What is the danger of having sacred habits, objects, or callings without real reverence?</p></section>
+  <section><h4>Connect it to your life</h4><p>Church attendance, callings, priesthood office, temple recommends, seminary, or family reputation cannot replace an actual relationship with God.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What kind of disciple do you want to become when no one is impressed by your outward religious appearance?</p></section>
+  <button class="complete-btn" type="button" data-complete="s5-eli-sons">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s6-speak" data-card="s6-speak" data-tier="Core" data-35="true" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S6 • 1 Samuel 3:1–10</p>
+      <h3>Samuel learns to hear the Lord</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">1</span> And the child Samuel ministered unto the Lord before Eli. And the word of the Lord was precious in those days; there was no open vision.</p>
+<p><span class="verse-num">4</span> That the Lord called Samuel: and he answered, Here am I.</p>
+<p><span class="verse-num">7</span> Now Samuel did not yet know the Lord, neither was the word of the Lord yet revealed unto him.</p>
+<p><span class="verse-num">8</span> And the Lord called Samuel again the third time. And he arose and went to Eli, and said, Here am I; for thou didst call me. And Eli perceived that the Lord had called the child.</p>
+<p><span class="verse-num">9</span> Therefore Eli said unto Samuel, Go, lie down: and it shall be, if he call thee, that thou shalt say, Speak, Lord; for thy servant heareth.</p>
+<p><span class="verse-num">10</span> And the Lord came, and stood, and called as at other times, Samuel, Samuel. Then Samuel answered, Speak; for thy servant heareth.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/3?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Samuel is serving in the temple area under Eli. The Lord calls him, but Samuel initially thinks Eli is calling.</p></section>
+  <section><h4>What is happening?</h4><p>Samuel has to learn to recognize revelation. Eli, despite his failures, helps Samuel know how to respond.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>“The word of the Lord was precious” means revelation was rare or not widely received in that time.</li><li>Samuel is not spiritually defective because he does not recognize the voice at first. Revelation often has to be learned.</li><li>The prayer “Speak; for thy servant heareth” is humble, open, and ready to obey.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Teenagers may assume prophets always recognized God instantly. Samuel needed guidance and repetition.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The Lord calls Samuel by name before Samuel fully understands who is speaking.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This makes revelation feel learnable rather than unreachable.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why might “Speak; for thy servant heareth” be a hard but powerful prayer for someone your age?</p></section>
+  <section><h4>Connect it to your life</h4><p>Learning revelation may involve quiet, repeated attempts, trusted mentors, scriptures, and willingness to act on what you receive.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>You do not need to know your whole future. What would change if your plan started with “Speak; for thy servant heareth”?</p></section>
+  <button class="complete-btn" type="button" data-complete="s6-speak">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s7-prophet" data-card="s7-prophet" data-tier="Extra depth" data-35="false" data-45="false" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S7 • 1 Samuel 3:15–20</p>
+      <h3>Samuel tells the truth and becomes known as a prophet</h3>
+    </div>
+    <div class="badges"><span class="badge tier-extra">Extra depth</span><span class="badge small">60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">15</span> And Samuel lay until the morning, and opened the doors of the house of the Lord. And Samuel feared to shew Eli the vision.</p>
+<p><span class="verse-num">18</span> And Samuel told him every whit, and hid nothing from him. And he said, It is the Lord: let him do what seemeth him good.</p>
+<p><span class="verse-num">19</span> And Samuel grew, and the Lord was with him, and did let none of his words fall to the ground.</p>
+<p><span class="verse-num">20</span> And all Israel from Dan even to Beer-sheba knew that Samuel was established to be a prophet of the Lord.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/3?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>The message Samuel receives concerns judgment on Eli’s house. It is not an easy first revelation to share.</p></section>
+  <section><h4>What is happening?</h4><p>Samuel obeys even when the message is uncomfortable. Over time, Israel recognizes him as a prophet.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Samuel’s first recorded revelation is not flattering or easy. Revelation is not only comfort; sometimes it includes correction.</li><li>“None of his words fall to the ground” means the Lord sustains Samuel’s prophetic words.</li><li>From Dan to Beer-sheba means from the northern to southern extent of Israel. Samuel becomes nationally recognized.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>Spiritual growth can involve telling the truth with courage, not just having peaceful feelings.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Samuel is afraid but obedient. Fear and faith can be present in the same person.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This connects personal revelation to prophetic responsibility and integrity.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>How can someone be afraid and still be faithful?</p></section>
+  <section><h4>Connect it to your life</h4><p>A teen may need to be honest, confess, apologize, stand up for someone, or speak truth kindly even when it is awkward.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What kind of person do you want to become when God asks you to do something uncomfortable?</p></section>
+  <button class="complete-btn" type="button" data-complete="s7-prophet">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s8-ark-charm" data-card="s8-ark-charm" data-tier="Core" data-35="true" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S8 • 1 Samuel 4:3–11</p>
+      <h3>Israel treats the ark like a good-luck charm</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">3</span> And when the people were come into the camp, the elders of Israel said, Wherefore hath the Lord smitten us to day before the Philistines? Let us fetch the ark of the covenant of the Lord out of Shiloh unto us, that, when it cometh among us, it may save us out of the hand of our enemies.</p>
+<p><span class="verse-num">5</span> And when the ark of the covenant of the Lord came into the camp, all Israel shouted with a great shout, so that the earth rang again.</p>
+<p><span class="verse-num">10</span> And the Philistines fought, and Israel was smitten, and they fled every man into his tent: and there was a very great slaughter; for there fell of Israel thirty thousand footmen.</p>
+<p><span class="verse-num">11</span> And the ark of God was taken; and the two sons of Eli, Hophni and Phinehas, were slain.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/4?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>Israel is defeated by the Philistines. Instead of repenting and seeking the Lord, they bring the ark from Shiloh into battle.</p></section>
+  <section><h4>What is happening?</h4><p>Israel uses a sacred object as if it can force God’s help. The result is disaster.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>The ark of the covenant was Israel’s most sacred religious symbol and was treated with great reverence.</li><li>The mistake was not respecting the ark too much; it was treating the ark as a tool while ignoring real covenant faithfulness.</li><li>Hophni and Phinehas, already shown as corrupt priests, are with the ark and die in the battle.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>A sacred symbol is not a substitute for obedience. Religious appearance cannot manipulate God.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Israel asks the right-sounding question—“Wherefore hath the Lord smitten us?”—but chooses a shortcut instead of repentance.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This is painfully relevant: people today can treat religious habits as lucky charms while avoiding real discipleship.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>How might people today treat religion like a good-luck charm?</p></section>
+  <section><h4>Connect it to your life</h4><p>Examples might include praying only to avoid consequences, wearing symbols without living covenants, or assuming Church activity automatically replaces repentance.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What religious habits in your future need to become real discipleship, not just appearance?</p></section>
+  <button class="complete-btn" type="button" data-complete="s8-ark-charm">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s9-dagon-return" data-card="s9-dagon-return" data-tier="Extra depth" data-35="false" data-45="false" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S9 • 1 Samuel 5:1–4; 6:10–16</p>
+      <h3>The ark among the Philistines and its return</h3>
+    </div>
+    <div class="badges"><span class="badge tier-extra">Extra depth</span><span class="badge small">60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">5:1</span> And the Philistines took the ark of God, and brought it from Eben-ezer unto Ashdod.</p>
+<p><span class="verse-num">5:2</span> When the Philistines took the ark of God, they brought it into the house of Dagon, and set it by Dagon.</p>
+<p><span class="verse-num">5:3</span> And when they of Ashdod arose early on the morrow, behold, Dagon was fallen upon his face to the earth before the ark of the Lord. And they took Dagon, and set him in his place again.</p>
+<p><span class="verse-num">5:4</span> And when they arose early on the morrow morning, behold, Dagon was fallen upon his face to the ground before the ark of the Lord; and the head of Dagon and both the palms of his hands were cut off upon the threshold; only the stump of Dagon was left to him.</p>
+<p><span class="verse-num">6:12</span> And the kine took the straight way to the way of Beth-shemesh, and went along the highway, lowing as they went, and turned not aside to the right hand or to the left; and the lords of the Philistines went after them unto the border of Beth-shemesh.</p>
+<p><span class="verse-num">6:13</span> And they of Beth-shemesh were reaping their wheat harvest in the valley: and they lifted up their eyes, and saw the ark, and rejoiced to see it.</p>
+<p><span class="verse-num">6:15</span> And the Levites took down the ark of the Lord, and the coffer that was with it, wherein the jewels of gold were, and put them on the great stone: and the men of Beth-shemesh offered burnt offerings and sacrificed sacrifices the same day unto the Lord.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/5?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>After Israel loses the ark, the Philistines put it in Dagon’s temple. The Lord shows His power, and eventually the Philistines send the ark back.</p></section>
+  <section><h4>What is happening?</h4><p>God is not helpless just because Israel was unfaithful. The Lord’s power is shown even in enemy territory.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Dagon was a Philistine god. Placing the ark beside Dagon was likely meant to show that Israel’s God had been defeated.</li><li>Dagon falling before the ark reverses that message: the Lord is not subject to Philistine power or idols.</li><li>The ark returns without Israel winning it back by military strength. God does not need human manipulation to defend His holiness.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>The ark story is not just weird ancient punishment. It teaches that God is holy, sovereign, and not controllable by either Israel or the Philistines.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>The Philistines have to keep setting their god back up. The contrast is almost ironic: a god that needs human help versus the living Lord.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>This card bridges Israel’s failure in chapter 4 and Israel’s repentance in chapter 7.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>What false gods today keep needing us to prop them back up?</p></section>
+  <section><h4>Connect it to your life</h4><p>Modern false gods might include popularity, control, appearance, money, comfort, attention, or achievement.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>If one of your future plans became an idol, how would you know?</p></section>
+  <button class="complete-btn" type="button" data-complete="s9-dagon-return">Mark complete</button>
+</article>
+
+<article class="reading-card" id="s10-ebenezer" data-card="s10-ebenezer" data-tier="Core" data-35="true" data-45="true" data-section="samuel">
+  <div class="card-head">
+    <div>
+      <p class="eyebrow">S10 • 1 Samuel 7:3–4, 8–12</p>
+      <h3>Return to the Lord: Ebenezer</h3>
+    </div>
+    <div class="badges"><span class="badge tier-core">Core</span><span class="badge small">35 / 45 / 60</span></div>
+  </div>
+
+  <section class="read-block">
+    <h4>Read aloud</h4>
+    <div class="scripture-text">
+      <p><span class="verse-num">3</span> And Samuel spake unto all the house of Israel, saying, If ye do return unto the Lord with all your hearts, then put away the strange gods and Ashtaroth from among you, and prepare your hearts unto the Lord, and serve him only: and he will deliver you out of the hand of the Philistines.</p>
+<p><span class="verse-num">4</span> Then the children of Israel did put away Baalim and Ashtaroth, and served the Lord only.</p>
+<p><span class="verse-num">8</span> And the children of Israel said to Samuel, Cease not to cry unto the Lord our God for us, that he will save us out of the hand of the Philistines.</p>
+<p><span class="verse-num">9</span> And Samuel took a sucking lamb, and offered it for a burnt offering wholly unto the Lord: and Samuel cried unto the Lord for Israel; and the Lord heard him.</p>
+<p><span class="verse-num">10</span> And as Samuel was offering up the burnt offering, the Philistines drew near to battle against Israel: but the Lord thundered with a great thunder on that day upon the Philistines, and discomfited them; and they were smitten before Israel.</p>
+<p><span class="verse-num">12</span> Then Samuel took a stone, and set it between Mizpeh and Shen, and called the name of it Eben-ezer, saying, Hitherto hath the Lord helped us.</p>
+    </div>
+    <a class="source-link" href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/7?lang=eng" target="_blank" rel="noopener">Open full chapter</a>
+  </section>
+
+  <section class="bridge"><h4>Bridge summary</h4><p>After the ark returns, twenty years pass. Israel laments after the Lord, and Samuel calls them to real repentance.</p></section>
+  <section><h4>What is happening?</h4><p>This time Israel does not just grab a sacred object. They put away false gods, prepare their hearts, serve the Lord, and ask Samuel to pray.</p></section>
+
+  <details open>
+    <summary>Key information</summary>
+    <ul><li>Returning to the Lord is not only feeling sorry. It includes putting away rival gods and serving the Lord only.</li><li>Baalim and Ashtaroth were false gods connected with surrounding Canaanite worship.</li><li>Ebenezer means “stone of help.” It marks memory: “Hitherto hath the Lord helped us.”</li><li>The story moves from Hannah’s private prayer to Samuel helping lead national repentance. One consecrated life can bless a whole people.</li></ul>
+  </details>
+  <details>
+    <summary>What modern readers might miss</summary>
+    <p>The victory comes through repentance and reliance on God, not through treating the ark as a shortcut.</p>
+  </details>
+  <details>
+    <summary>Hidden detail</summary>
+    <p>Eben-ezer appeared as a battle location in chapter 4 where Israel lost. In chapter 7, the name becomes a testimony that the Lord helped them.</p>
+  </details>
+  <section class="why"><h4>Why it matters</h4><p>God can transform even the memory of failure into a place of testimony and help.</p></section>
+  <section class="discuss"><h4>Discuss</h4><p>Why do we need our own “Ebenezer” moments where we remember that the Lord has helped us?</p></section>
+  <section><h4>Connect it to your life</h4><p>A teen can mark spiritual memory through journals, prayers, testimony notes, photos, scriptures, or quiet reminders of answered help.</p></section>
+  <section class="planpath"><h4>Plan vs. Path</h4><p>What false god or distraction might you need to put away so your future is built around the Lord?</p></section>
+  <button class="complete-btn" type="button" data-complete="s10-ebenezer">Mark complete</button>
+</article>
+
+    <section class="card sensitive" id="final-reflection">
+      <h2>Before You Close This Page</h2>
+      <p><strong>Ruth:</strong> Ruth loses her expected future, chooses covenant loyalty, takes humble action, receives kindness and protection, and becomes part of a redemptive story much larger than she could see.</p>
+      <p><strong>Naomi:</strong> Naomi returns empty and bitter, but God’s mercy begins quietly before she recognizes it.</p>
+      <p><strong>Boaz:</strong> Boaz uses his position to protect, bless, and redeem rather than to take advantage.</p>
+      <p><strong>Hannah:</strong> Hannah brings her longing honestly to God, receives peace before the full answer, and consecrates her blessing back to the Lord.</p>
+      <p><strong>Samuel:</strong> Samuel learns to hear the Lord’s voice and grows into a prophet during a spiritually difficult time.</p>
+      <p><strong>Israel:</strong> Israel learns that outward religious symbols cannot replace real trust, reverence, repentance, and obedience.</p>
+      <p><strong>Jesus Christ:</strong> Jesus Christ is the Redeemer. He can walk with us through loss, waiting, uncertainty, correction, repentance, and changed plans. He can make more of our faithful choices than we can see in the moment.</p>
+      <div class="planpath">
+        <h4>Your Plan and God’s Path</h4>
+        <p>One part of my future I want to plan faithfully is…</p>
+        <p>One part of my future I need to hold humbly is…</p>
+        <p>One thing I can still choose no matter what happens is…</p>
+        <p>Even if ______________________, I will still ______________________.</p>
+        <p>I want to become someone who ______________________.</p>
+      </div>
+      <p><strong>Invitation:</strong> This week, pray over one part of your future. Ask Heavenly Father not only what He wants you to accomplish, but who He wants you to become.</p>
+    </section>
+
+    <section class="card sources" id="sources">
+      <h2>Sources</h2>
+      <p>The scripture text is from the King James Version. The links below open the official Church pages used for full chapters and context.</p>
+      <h3>Primary scripture chapters</h3>
+      <ul>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/1?lang=eng" target="_blank" rel="noopener">Ruth 1</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/2?lang=eng" target="_blank" rel="noopener">Ruth 2</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/3?lang=eng" target="_blank" rel="noopener">Ruth 3</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/ruth/4?lang=eng" target="_blank" rel="noopener">Ruth 4</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/1?lang=eng" target="_blank" rel="noopener">1 Samuel 1</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/2?lang=eng" target="_blank" rel="noopener">1 Samuel 2</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/3?lang=eng" target="_blank" rel="noopener">1 Samuel 3</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/4?lang=eng" target="_blank" rel="noopener">1 Samuel 4</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/5?lang=eng" target="_blank" rel="noopener">1 Samuel 5</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/6?lang=eng" target="_blank" rel="noopener">1 Samuel 6</a>, <a href="https://www.churchofjesuschrist.org/study/scriptures/ot/1-sam/7?lang=eng" target="_blank" rel="noopener">1 Samuel 7</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-old-testament-2026/23?lang=eng" target="_blank" rel="noopener">Come, Follow Me—For Home and Church: Old Testament 2026, June 1–7</a></li>
+      </ul>
+      <h3>Context sources</h3>
+      <ul>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/judges-the?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Judges, the</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/bethlehem?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Bethlehem</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/moab?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Moab</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/gleanings?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Gleanings</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/shiloh?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Shiloh</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/vows?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Vows</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/nazarite?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Nazarite</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/ark-of-the-covenant?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Ark of the Covenant</a></li>
+        <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bd/samuel-books-of?lang=eng" target="_blank" rel="noopener">Bible Dictionary: Samuel, books of</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="bottom-bar">
+    <div class="bottom-inner">
+      <span class="progress-text" id="progressText">0 complete</span>
+      <a class="top-link" href="#top">Back to top</a>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'ruth-hannah-reader-progress-v1';
+    const THEME_KEY = 'ruth-hannah-reader-theme-v1';
+    const cards = Array.from(document.querySelectorAll('.reading-card'));
+    const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+    const progressText = document.getElementById('progressText');
+    const themeToggle = document.getElementById('themeToggle');
+    const resetProgress = document.getElementById('resetProgress');
+
+    function getDone() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+    }
+    function setDone(done) { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); }
+    function refreshProgress() {
+      const done = getDone();
+      let visible = cards.filter(c => !c.classList.contains('hidden-card'));
+      let completed = visible.filter(c => done[c.dataset.card]).length;
+      progressText.textContent = `${completed} of ${visible.length} visible complete`;
+      cards.forEach(card => {
+        const btn = card.querySelector('.complete-btn');
+        const isDone = !!done[card.dataset.card];
+        btn.classList.toggle('done', isDone);
+        btn.textContent = isDone ? 'Completed' : 'Mark complete';
+      });
+    }
+    function applyFilter(filter) {
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+      cards.forEach(card => {
+        let show = true;
+        if (filter === '35') show = card.dataset['35'] === 'true';
+        if (filter === '45') show = card.dataset['45'] === 'true';
+        if (filter === 'ruth') show = card.dataset.section === 'ruth';
+        if (filter === 'samuel') show = card.dataset.section === 'samuel';
+        if (filter === 'all') show = true;
+        card.classList.toggle('hidden-card', !show);
+      });
+      refreshProgress();
+    }
+    buttons.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+    document.querySelectorAll('.complete-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.complete;
+        const done = getDone();
+        done[id] = !done[id];
+        if (!done[id]) delete done[id];
+        setDone(done);
+        refreshProgress();
+      });
+    });
+    resetProgress.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      refreshProgress();
+    });
+    function setTheme(dark) {
+      document.body.classList.toggle('dark', dark);
+      themeToggle.classList.toggle('active', dark);
+      themeToggle.textContent = dark ? 'Light mode' : 'Dark mode';
+      localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+    }
+    themeToggle.addEventListener('click', () => setTheme(!document.body.classList.contains('dark')));
+    setTheme(localStorage.getItem(THEME_KEY) === 'dark');
+    refreshProgress();
+  </script>
+</body>
+</html>
