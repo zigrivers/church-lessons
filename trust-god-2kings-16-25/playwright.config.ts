@@ -3,8 +3,6 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
-  snapshotPathTemplate:
-    '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
   reporter: [['list'], ['html', { open: 'never' }]],
   expect: {
     toHaveScreenshot: {
