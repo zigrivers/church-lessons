@@ -80,6 +80,7 @@ test('supports the complete teacher presentation flow and reset', async ({ page 
   );
   await expect(waitDecision).toHaveAttribute('aria-pressed', 'false');
   await expect(page.locator('[data-reveal-panel="offer-context"]')).toBeHidden();
+  await expect(page.locator('#offer')).toBeInViewport();
 });
 
 test('loads without browser errors or failed assets', async ({ page }) => {

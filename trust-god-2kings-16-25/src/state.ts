@@ -1,4 +1,4 @@
-import type { ChapterId } from './lesson';
+import { CHAPTERS, type ChapterId } from './lesson';
 
 export type ViewMode = 'guide' | 'present';
 export type Decision = 'surrender' | 'wait' | 'resist';
@@ -23,6 +23,16 @@ export const DEFAULT_STATE: LessonState = {
   viewMode: 'guide',
   revealedIds: [],
 };
+
+const DECISIONS: readonly Decision[] = ['surrender', 'wait', 'resist'];
+
+function isChapterId(value: unknown): value is ChapterId {
+  return typeof value === 'string' && CHAPTERS.some(({ id }) => id === value);
+}
+
+function isDecision(value: unknown): value is Decision {
+  return typeof value === 'string' && DECISIONS.includes(value as Decision);
+}
 
 export function reduceLessonState(state: LessonState, action: LessonAction): LessonState {
   switch (action.type) {
@@ -57,8 +67,15 @@ export function loadLessonState(storage: ReadStorage): LessonState {
       return DEFAULT_STATE;
     }
     const candidate = value as Partial<LessonState>;
+    const activeChapter = candidate.activeChapter ?? DEFAULT_STATE.activeChapter;
+    if (
+      !isChapterId(activeChapter) ||
+      (candidate.openingDecision !== undefined && !isDecision(candidate.openingDecision))
+    ) {
+      return DEFAULT_STATE;
+    }
     return {
-      activeChapter: candidate.activeChapter ?? DEFAULT_STATE.activeChapter,
+      activeChapter,
       viewMode: candidate.viewMode === 'present' ? 'present' : 'guide',
       openingDecision: candidate.openingDecision,
       revealedIds: Array.isArray(candidate.revealedIds)

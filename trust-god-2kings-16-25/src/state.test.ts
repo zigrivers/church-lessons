@@ -37,6 +37,20 @@ describe('lesson state', () => {
     expect(loadLessonState(invalid)).toEqual(DEFAULT_STATE);
   });
 
+  it('rejects unknown persisted chapters and decisions', () => {
+    const storage = {
+      getItem: vi.fn(() =>
+        JSON.stringify({
+          ...DEFAULT_STATE,
+          activeChapter: 'invented-chapter',
+          openingDecision: 'panic',
+        }),
+      ),
+    };
+
+    expect(loadLessonState(storage)).toEqual(DEFAULT_STATE);
+  });
+
   it('saves and resets only the lesson key', () => {
     const storage = { setItem: vi.fn(), removeItem: vi.fn() };
     saveLessonState(storage, DEFAULT_STATE);

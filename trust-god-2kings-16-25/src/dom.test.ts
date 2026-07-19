@@ -64,7 +64,23 @@ describe('teacher controls', () => {
     expect(document.documentElement.dataset.view).toBe('present');
     document.querySelector<HTMLButtonElement>('[data-action="reset"]')?.click();
     expect(document.documentElement.dataset.view).toBe('guide');
+    expect(document.getElementById('offer')?.scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'auto',
+      block: 'start',
+    });
     cleanup();
+  });
+
+  it('uses a valid URL chapter as the starting point', () => {
+    window.location.hash = '#prayer';
+    const cleanup = mountLesson(document, storage);
+
+    expect(document.querySelector('[data-current-label]')?.textContent).toBe(
+      'Spread out the letter',
+    );
+
+    cleanup();
+    window.history.replaceState(null, '', window.location.pathname);
   });
 
   it('navigates chapters and enforces first and last boundaries', () => {

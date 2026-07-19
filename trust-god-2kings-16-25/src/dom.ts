@@ -39,6 +39,11 @@ function buildChapterMenu(root: Document): void {
 
 export function mountLesson(root: Document, storage: Storage): () => void {
   let state: LessonState = loadLessonState(storage);
+  const hashChapter = root.defaultView?.location.hash.slice(1);
+  const linkedChapter = CHAPTERS.find(({ id }) => id === hashChapter);
+  if (linkedChapter) {
+    state = { ...state, activeChapter: linkedChapter.id };
+  }
   let menuOpen = false;
   buildChapterMenu(root);
 
@@ -181,6 +186,10 @@ export function mountLesson(root: Document, storage: Storage): () => void {
         state = DEFAULT_STATE;
         menuOpen = false;
         render();
+        root.getElementById(DEFAULT_STATE.activeChapter)?.scrollIntoView({
+          behavior: 'auto',
+          block: 'start',
+        });
         announce('Lesson reset.');
         break;
       case 'print':
