@@ -38,6 +38,55 @@ test('contains the complete teacher-led lesson in semantic HTML', async ({ page 
   await expect(page.getByText('If the controls do not load')).toBeAttached();
 });
 
+test('connects every principle to private application in a teenager’s world', async ({ page }) => {
+  await page.goto('/');
+
+  const lesson = page.locator('#lesson');
+  const labs = page.locator('[data-application-lab]');
+  await expect(labs).toHaveCount(3);
+  await expect(
+    page.locator('#board [data-application-lab="faith-under-pressure"]'),
+  ).toHaveCount(1);
+
+  for (const principle of [
+    /faith is challenged/i,
+    /Hezekiah’s actions/i,
+    /the Lord’s hands/i,
+    /scripture can turn/i,
+    /trust Heavenly Father and Jesus Christ/i,
+  ]) {
+    await expect(lesson).toContainText(principle);
+  }
+
+  for (const presentContext of [
+    /school/i,
+    /team/i,
+    /group chat/i,
+    /online feed/i,
+    /friends/i,
+    /media/i,
+    /future/i,
+  ]) {
+    await expect(lesson).toContainText(presentContext);
+  }
+
+  for (let index = 0; index < 3; index += 1) {
+    await expect(labs.nth(index)).toContainText(/choose one/i);
+  }
+
+  for (const [labName, privacyAndPacing] of [
+    ['faith-under-pressure', /Discuss the scenario, not someone’s private story\. Two minutes/i],
+    ['scripture-turns-hearts', /Personal answers may stay private\. Two minutes/i],
+    ['the-lords-hands', /No reporting afterward\. Two minutes/i],
+  ] as const) {
+    await expect(page.locator(`[data-application-lab="${labName}"]`)).toContainText(
+      privacyAndPacing,
+    );
+  }
+
+  await expect(page.getByText('No public answer required', { exact: true })).toBeAttached();
+});
+
 test('supports the complete teacher presentation flow and reset', async ({ page }) => {
   await page.goto('/');
 
