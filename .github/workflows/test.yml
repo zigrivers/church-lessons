@@ -1,0 +1,32 @@
+name: Test lesson sites
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  trust-under-pressure:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: trust-god-2kings-16-25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: trust-god-2kings-16-25/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:all
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: trust-god-2kings-16-25/playwright-report
+          retention-days: 7
