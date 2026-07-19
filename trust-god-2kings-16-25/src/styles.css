@@ -737,6 +737,173 @@ html[data-view='present'] [data-guide] {
   text-wrap: balance;
 }
 
+.application-lab {
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(4rem, 8vw, 8rem);
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  box-shadow: 0 22px 60px rgb(10 20 35 / 10%);
+}
+
+.application-lab-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  gap: 0 clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.application-lab-heading .application-kicker {
+  grid-column: 1 / -1;
+}
+
+.application-lab h3 {
+  margin: 0;
+  font: 750 clamp(2.2rem, 5vw, 5.2rem) / 0.98 var(--display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.application-lab-heading > p:last-child {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+.application-kicker,
+.scenario-number,
+.balance-label {
+  color: var(--ember-text);
+  font: 750 0.76rem/1.2 var(--utility);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.application-scenarios,
+.application-question-grid,
+.trust-balance {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+}
+
+.application-scenarios article,
+.application-question-grid > p,
+.trust-balance article {
+  min-width: 0;
+  padding: clamp(1.3rem, 3vw, 2.4rem);
+  margin: 0;
+  background: var(--paper);
+}
+
+.application-scenarios article > p:last-child,
+.trust-balance article > p:last-child {
+  margin-bottom: 0;
+}
+
+.application-question-grid > p {
+  font: 700 clamp(1.15rem, 2.2vw, 1.75rem) / 1.2 var(--display);
+}
+
+.application-pattern {
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+
+.application-pattern ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  padding: 0;
+  border-block: 1px solid var(--border-light);
+  counter-reset: pattern;
+  list-style: none;
+}
+
+.application-pattern li {
+  padding: clamp(1.2rem, 2.6vw, 2rem);
+  border-right: 1px solid var(--border-light);
+  counter-increment: pattern;
+}
+
+.application-pattern li:last-child {
+  border-right: 0;
+}
+
+.application-pattern li::before {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--prayer);
+  font: 700 0.78rem/1 var(--utility);
+  content: '0' counter(pattern);
+}
+
+.application-privacy {
+  padding-top: 1.4rem;
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--border-light);
+  color: var(--ink-soft);
+  font: 650 0.82rem/1.5 var(--utility);
+}
+
+.application-lab-pressure {
+  border-color: var(--night);
+  background: var(--night);
+  color: var(--limestone);
+}
+
+.application-lab-pressure .application-lab-heading > p:last-child,
+.application-lab-pressure .application-privacy {
+  color: var(--dust);
+}
+
+.application-lab-pressure .application-kicker,
+.application-lab-pressure .scenario-number {
+  color: var(--ember-bright);
+}
+
+.application-lab-pressure .application-scenarios,
+.application-lab-pressure .application-question-grid,
+.application-lab-pressure .application-pattern ol {
+  background: var(--border-dark);
+  border-color: var(--border-dark);
+}
+
+.application-lab-pressure .application-scenarios article,
+.application-lab-pressure .application-question-grid > p {
+  background: var(--night-soft);
+}
+
+.application-lab-pressure .application-pattern li,
+.application-lab-pressure .application-privacy {
+  border-color: var(--border-dark);
+}
+
+.application-lab-scripture {
+  border-top: 8px solid var(--ember);
+}
+
+.application-lab-trust {
+  border: 0;
+  border-left: 8px solid var(--covenant);
+  background: linear-gradient(135deg, var(--white), var(--prayer-pale));
+}
+
+.trust-balance {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.trust-balance article:last-child {
+  background: var(--night);
+  color: var(--limestone);
+}
+
+.trust-balance article:last-child .balance-label {
+  color: var(--covenant);
+}
+
 .chapter-signal {
   max-width: none;
   background:
@@ -1412,8 +1579,34 @@ html[data-view='present'] [data-guide] {
   .question-pair,
   .prayer-lenses,
   .book-actions,
+  .application-lab-heading,
+  .application-scenarios,
+  .application-question-grid,
+  .application-pattern ol,
+  .trust-balance,
   .private-choices {
     grid-template-columns: 1fr;
+  }
+
+  .application-lab-heading {
+    align-items: start;
+  }
+
+  .application-lab-heading > p:last-child {
+    margin-top: 1.4rem;
+  }
+
+  .application-pattern li {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .application-pattern li:last-child {
+    border-bottom: 0;
+  }
+
+  .application-lab-pressure .application-pattern li {
+    border-bottom-color: var(--border-dark);
   }
 
   .decision-card,
@@ -1541,6 +1734,11 @@ html[data-view='present'] [data-guide] {
   .map-layout,
   .letter-stage,
   .lost-book-grid,
+  .application-lab-heading,
+  .application-scenarios,
+  .application-question-grid,
+  .application-pattern ol,
+  .trust-balance,
   .private-choices,
   .site-footer {
     display: block;
@@ -1590,6 +1788,11 @@ html[data-view='present'] [data-guide] {
   .prayer-lenses article,
   .book-actions article,
   .reform-card,
+  .application-lab,
+  .application-scenarios article,
+  .application-question-grid > p,
+  .application-pattern li,
+  .trust-balance article,
   .private-choices article,
   .guide-note,
   .reveal-panel {
