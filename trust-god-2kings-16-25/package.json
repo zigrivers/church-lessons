@@ -16,6 +16,7 @@
     "test:all": "npm run test && npm run build && playwright test"
   },
   "dependencies": {
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "gsap": "^3.15.0"
   },
   "devDependencies": {

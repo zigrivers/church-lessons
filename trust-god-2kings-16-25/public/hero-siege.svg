@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" role="img" aria-labelledby="title description">
+  <title id="title">Jerusalem under pressure</title>
+  <desc id="description">A walled city remains steady while diagonal lines press toward it.</desc>
+  <rect width="320" height="160" fill="#13243a"/>
+  <path d="M0 117 49 78 83 101 122 61 162 101 199 70 230 100 267 63 320 105V160H0Z" fill="#0a1423"/>
+  <g fill="#eeeadf">
+    <path d="M118 73h84v61h-84z"/>
+    <path d="m109 80 51-39 51 39z"/>
+    <path d="M102 106h116v28H102z"/>
+  </g>
+  <g fill="#d8b45a">
+    <path d="M131 92h14v18h-14zM153 92h14v18h-14zM175 92h14v18h-14z"/>
+    <path d="M151 113h19v21h-19z"/>
+  </g>
+  <g stroke="#ee7059" stroke-width="8" stroke-linecap="square" opacity=".9">
+    <path d="m-14 24 79 38"/>
+    <path d="m-3 67 77 37"/>
+    <path d="m245 16 85 41"/>
+    <path d="m260 65 72 35"/>
+  </g>
+  <path d="M77 125h166" stroke="#d8b45a" stroke-width="5"/>
+</svg>

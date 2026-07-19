@@ -6,7 +6,7 @@
 
 - Seed: 299
 - Hero: Artistic Asymmetry
-- Type: Cabinet Grotesk display, system sans body, tabular system monospace utility
+- Type: Space Grotesk Variable display, system sans body, tabular system monospace utility. Cabinet Grotesk was the initial draw; the final build uses this closely matched self-hosted face because the remote font failed the cross-origin accessibility scan.
 - Components: Inline Typography Images, Horizontal Accordions, Infinite Marquee
 - Motion: Scrubbing Text Reveals, Card Stacking
 

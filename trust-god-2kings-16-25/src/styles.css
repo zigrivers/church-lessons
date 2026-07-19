@@ -1,9 +1,13 @@
+@import '@fontsource-variable/space-grotesk';
+
 :root {
   --night: #0a1423;
   --night-soft: #13243a;
   --limestone: #eeeadf;
   --dust: #b8af9a;
   --ember: #d4523a;
+  --ember-text: #a83226;
+  --ember-bright: #ee7059;
   --prayer: #6ca7c8;
   --prayer-pale: #dceaf0;
   --covenant: #d8b45a;
@@ -13,12 +17,12 @@
   --paper: #f8f5ed;
   --white: #fffefa;
   --focus: #8fcdf0;
-  --display: 'Cabinet Grotesk', 'Arial Black', sans-serif;
+  --display: 'Space Grotesk Variable', 'Arial Black', sans-serif;
   --body: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
   --utility: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   --border-dark: rgb(238 234 223 / 22%);
   --border-light: rgb(16 21 29 / 20%);
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * {
@@ -45,6 +49,8 @@ body {
 button,
 a {
   font: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(216 180 90 / 24%);
 }
 
 button {
@@ -84,16 +90,15 @@ button:disabled {
 .skip-link {
   position: fixed;
   z-index: 200;
-  inset: 1rem auto auto 1rem;
+  inset: -10rem auto auto 1rem;
   padding: 0.75rem 1rem;
-  transform: translateY(-220%);
   background: var(--limestone);
   color: var(--night);
   font-weight: 800;
 }
 
-.skip-link:focus {
-  transform: none;
+.skip-link:focus-visible {
+  inset-block-start: 1rem;
 }
 
 .sr-only {
@@ -178,6 +183,11 @@ button:disabled {
   color: var(--night);
 }
 
+.view-switch button:hover:not([aria-pressed='true']),
+.print-button:hover {
+  background: rgb(238 234 223 / 12%);
+}
+
 .print-button {
   padding: 0.65rem 0.9rem;
   border: 1px solid var(--border-dark);
@@ -236,10 +246,7 @@ button:disabled {
   margin-inline: 0.08em;
   border: 1px solid rgb(238 234 223 / 35%);
   border-radius: 999px;
-  background:
-    linear-gradient(90deg, rgb(212 82 58 / 72%), rgb(216 180 90 / 28%)),
-    url('https://picsum.photos/seed/assyria-stone/320/160') center / cover;
-  filter: grayscale(1) contrast(1.25);
+  background: url('/hero-siege.svg') center / cover;
   vertical-align: 0.06em;
 }
 
@@ -345,6 +352,11 @@ button:disabled {
   padding: 0.7rem 1rem;
 }
 
+.chapter-rail > button:hover:not(:disabled),
+#chapter-menu button:hover {
+  background: rgb(10 20 35 / 8%);
+}
+
 .chapter-menu-button {
   display: flex;
   min-width: 0;
@@ -409,7 +421,7 @@ button:disabled {
 
 .section-context {
   margin: 0 0 0.8rem;
-  color: var(--ember);
+  color: var(--ember-text);
   font-size: 0.72rem;
 }
 
@@ -448,7 +460,7 @@ button:disabled {
 }
 
 .scenario-intro {
-  color: var(--ember);
+  color: var(--ember-text);
 }
 
 .scenario-copy {
@@ -716,7 +728,7 @@ html[data-view='present'] [data-guide] {
 }
 
 .fact-state {
-  color: var(--ember);
+  color: var(--ember-text);
 }
 
 .display-question {
@@ -853,7 +865,7 @@ html[data-view='present'] [data-guide] {
 }
 
 .claim-index {
-  color: var(--ember);
+  color: var(--ember-bright);
   font: 800 clamp(2rem, 4vw, 4.5rem) / 1 var(--display);
 }
 
@@ -944,7 +956,7 @@ html[data-view='present'] [data-guide] {
 
 .letter-mark,
 .letter-signature {
-  color: var(--ember);
+  color: var(--ember-text);
 }
 
 .letter-signature {
@@ -1083,7 +1095,7 @@ html[data-view='present'] [data-guide] {
 }
 
 .action-verb {
-  color: var(--ember);
+  color: var(--ember-text);
   font: 800 clamp(1.5rem, 2.6vw, 2.4rem) / 1 var(--display);
 }
 
@@ -1135,7 +1147,7 @@ html[data-view='present'] [data-guide] {
 .reform-card .sequence-word {
   grid-row: 1 / span 2;
   align-self: center;
-  color: var(--ember);
+  color: var(--ember-text);
   font: 800 clamp(1.5rem, 3.4vw, 3.2rem) / 1 var(--display);
   letter-spacing: -0.03em;
   text-transform: none;
@@ -1158,13 +1170,18 @@ html[data-view='present'] [data-guide] {
 }
 
 .causal-chain span {
-  color: var(--ember);
+  color: var(--ember-text);
 }
 
 .chapter-final {
   max-width: none;
   background: var(--night);
   color: var(--limestone);
+}
+
+.chapter-signal .section-context,
+.chapter-final .section-context {
+  color: var(--ember-bright);
 }
 
 .final-field {
@@ -1265,6 +1282,11 @@ html[data-view='present'] [data-guide] {
   background: transparent;
   color: var(--limestone);
   font-weight: 800;
+}
+
+.footer-links button:hover {
+  border-color: var(--covenant);
+  background: rgb(238 234 223 / 10%);
 }
 
 .noscript-note {
@@ -1422,8 +1444,14 @@ html[data-view='present'] [data-guide] {
     border-bottom: 0;
   }
 
-  .signal-accordion:has(.signal-slice:hover),
-  .signal-accordion:has(.signal-slice:focus-within) {
+  .signal-accordion:has(.signal-slice:nth-child(1):hover),
+  .signal-accordion:has(.signal-slice:nth-child(1):focus-within),
+  .signal-accordion:has(.signal-slice:nth-child(2):hover),
+  .signal-accordion:has(.signal-slice:nth-child(2):focus-within),
+  .signal-accordion:has(.signal-slice:nth-child(3):hover),
+  .signal-accordion:has(.signal-slice:nth-child(3):focus-within),
+  .signal-accordion:has(.signal-slice:nth-child(4):hover),
+  .signal-accordion:has(.signal-slice:nth-child(4):focus-within) {
     grid-template-columns: 1fr;
   }
 

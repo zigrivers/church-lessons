@@ -1,4 +1,3 @@
-import './styles.css';
 import { mountLesson } from './dom';
 import { setupMotion } from './motion';
 
