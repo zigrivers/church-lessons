@@ -1105,6 +1105,20 @@ html[data-view='present'] [data-guide] {
   gap: 1rem;
 }
 
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  html.motion-stack .reform-stack {
+    min-height: min(72svh, 48rem);
+    align-items: stretch;
+    gap: 0;
+  }
+
+  html.motion-stack .reform-card {
+    min-height: min(72svh, 48rem);
+    grid-area: 1 / 1;
+    will-change: transform;
+  }
+}
+
 .reform-card {
   position: relative;
   display: grid;
