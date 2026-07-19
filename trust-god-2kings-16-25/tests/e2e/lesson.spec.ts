@@ -73,6 +73,17 @@ test('connects every principle to private application in a teenager’s world', 
   for (let index = 0; index < 3; index += 1) {
     await expect(labs.nth(index)).toContainText(/choose one/i);
   }
+
+  for (const [labName, privacyAndPacing] of [
+    ['faith-under-pressure', /Discuss the scenario, not someone’s private story\. Two minutes/i],
+    ['scripture-turns-hearts', /Personal answers may stay private\. Two minutes/i],
+    ['the-lords-hands', /No reporting afterward\. Two minutes/i],
+  ] as const) {
+    await expect(page.locator(`[data-application-lab="${labName}"]`)).toContainText(
+      privacyAndPacing,
+    );
+  }
+
   await expect(page.getByText('No public answer required', { exact: true })).toBeAttached();
 });
 

@@ -31,7 +31,7 @@ No reproducible issue remained after the completed production-browser pass.
 - Mobile and keyboard: 320 px width with no horizontal overflow, a 320 px chapter rail, 44 px minimum visible button height, visible skip-link focus, keyboard-only view switching, decision selection, and reveal activation.
 - Resilience: production console and runtime error logs were empty, all local assets loaded, and the print rendering exposed all lesson material.
 - Live release: the permanent authenticated here.now copy repeated the core interaction and Reset checks, stayed within a 320 px viewport, loaded its social-preview asset, reported no browser errors, and returned zero serious or critical axe violations at the opening and final chapters.
-- Personal-application follow-up: inspected all 3 new reflection labs as rendered content, including the faith-under-pressure scenarios and Hezekiah pattern on a projector layout plus the scripture and trust labs on a phone layout. The 390 px viewport had no horizontal overflow, every lab was present, and the browser console and runtime error logs remained empty.
+- Personal-application follow-up: inspected all 3 new reflection labs as rendered content, including the faith-under-pressure scenarios and Hezekiah pattern on a projector layout plus the scripture and trust labs on a phone layout. The 320 px viewport had no horizontal overflow, every lab was present, and the browser console and runtime error logs remained empty.
 
 ## Evidence
 
