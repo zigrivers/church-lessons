@@ -186,6 +186,11 @@ export function mountLesson(root: Document, storage: Storage): () => void {
         state = DEFAULT_STATE;
         menuOpen = false;
         render();
+        root.defaultView?.history.replaceState(
+          root.defaultView.history.state,
+          '',
+          `#${DEFAULT_STATE.activeChapter}`,
+        );
         root.getElementById(DEFAULT_STATE.activeChapter)?.scrollIntoView({
           behavior: 'auto',
           block: 'start',

@@ -100,6 +100,16 @@ test('loads without browser errors or failed assets', async ({ page }) => {
   expect(failedRequests).toEqual([]);
 });
 
+test('reset replaces a direct chapter link and returns to the offer', async ({ page }) => {
+  await page.goto('/#final-word');
+  await expect(page.locator('[data-current-label]')).toHaveText('Final word');
+
+  await page.locator('[data-action="reset"]').click();
+
+  await expect(page).toHaveURL(/#offer$/);
+  await expect(page.locator('#offer')).toBeInViewport();
+});
+
 test('supports the core lesson controls with a keyboard only', async ({ page }) => {
   await page.goto('/');
 

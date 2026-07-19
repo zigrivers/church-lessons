@@ -68,6 +68,7 @@ describe('teacher controls', () => {
       behavior: 'auto',
       block: 'start',
     });
+    expect(window.location.hash).toBe('#offer');
     cleanup();
   });
 
